@@ -5,3 +5,28 @@ backend/*.pyc
 backend/*.pyo
 backend/*.pyd
 backend/.env
+
+# Database
+database/*.db
+database/*.sqlite
+database/*.sqlite3
+
+# Node / React (Frontend)
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+
+# Logs
+*.log
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Misc
+.env
+.env.local
+.env.production
+.env.development
