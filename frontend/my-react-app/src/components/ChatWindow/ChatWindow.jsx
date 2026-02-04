@@ -1,10 +1,11 @@
 import Message from "../Message/Message";
 
-function ChatWindow() {
+function ChatWindow({ messages }) {
   return (
     <div style={styles.window}>
-      <Message sender="ai" text="Hello! How can I help you?" />
-      <Message sender="user" text="I want to chat." />
+      {messages.map((msg, index) => (
+        <Message key={index} sender={msg.sender} text={msg.text} />
+      ))}
     </div>
   );
 }

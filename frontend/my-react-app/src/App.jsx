@@ -1,11 +1,17 @@
+import { useState } from "react";
 import ChatWindow from "./components/ChatWindow/ChatWindow";
 import ChatInput from "./components/ChatInput/ChatInput";
 
 function App() {
+  const [messages, setMessages] = useState([
+    { sender: "ai", text: "Hello! How can I help you?" },
+    { sender: "user", text: "Help me with a task." },
+  ]);
+
   return (
     <div style={styles.app}>
       <div style={styles.chatContainer}>
-        <ChatWindow />
+        <ChatWindow messages={messages} />
         <ChatInput />
       </div>
     </div>
@@ -15,7 +21,7 @@ function App() {
 const styles = {
   app: {
     height: "100vh",
-    width: "100%",
+    width: "100vw",
     backgroundColor: "#f7f7f8",
     display: "flex",
     justifyContent: "center",
