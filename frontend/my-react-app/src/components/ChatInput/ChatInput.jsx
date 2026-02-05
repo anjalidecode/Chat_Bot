@@ -1,12 +1,25 @@
-function ChatInput() {
+import { useState } from "react";
+
+function ChatInput({ onSend }) {
+  const [input, setInput] = useState("");
+
+  const handleSend = () => {
+    onSend(input);
+    setInput("");
+  };
+
   return (
     <div style={styles.container}>
       <input
         type="text"
         placeholder="Type a message..."
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
         style={styles.input}
       />
-      <button style={styles.button}>Send</button>
+      <button onClick={handleSend} style={styles.button}>
+        Send
+      </button>
     </div>
   );
 }

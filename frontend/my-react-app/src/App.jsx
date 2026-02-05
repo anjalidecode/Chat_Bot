@@ -8,11 +8,17 @@ function App() {
     { sender: "user", text: "Help me with a task." },
   ]);
 
+  const handleSendMessage = (text) => {
+    if (!text.trim()) return;
+
+    setMessages((prevMessages) => [...prevMessages, { sender: "user", text }]);
+  };
+
   return (
     <div style={styles.app}>
       <div style={styles.chatContainer}>
         <ChatWindow messages={messages} />
-        <ChatInput />
+        <ChatInput onSend={handleSendMessage} />
       </div>
     </div>
   );
