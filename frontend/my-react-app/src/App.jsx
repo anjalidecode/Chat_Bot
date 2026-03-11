@@ -5,21 +5,38 @@ import ChatInput from "./components/ChatInput/ChatInput";
 function App() {
   const [messages, setMessages] = useState([
     { sender: "ai", text: "Hello! How can I help you?" },
-    { sender: "user", text: "Help me with a task." },
   ]);
 
-  const handleSendMessage = (text) => {
+  const handleSendMessage = async (text) => {
     if (!text.trim()) return;
 
+    // Add user message
     setMessages((prevMessages) => [...prevMessages, { sender: "user", text }]);
 
-    // Fake AI reply after delay
-    setTimeout(() => {
+    try {
+      const response = await fetch("http://127.0.0.1:5000/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: text }),
+      });
+
+      const data = await response.json();
+
+      // Add AI response
       setMessages((prevMessages) => [
         ...prevMessages,
-        { sender: "ai", text: "This is a dummy AI response." },
+        { sender: "ai", text: data.reply },
       ]);
-    }, 1000);
+    } catch (error) {
+      console.error("Error:", error);
+
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { sender: "ai", text: "Error contacting AI backend." },
+      ]);
+    }
   };
 
   return (
