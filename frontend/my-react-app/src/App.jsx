@@ -11,20 +11,16 @@ function App() {
   const handleSendMessage = (text) => {
     if (!text.trim()) return;
 
-    // Add user message
-  setMessages((prevMessages) => [
-    ...prevMessages,
-    { sender: "user", text }
-  ]);
+    setMessages((prevMessages) => [...prevMessages, { sender: "user", text }]);
 
-  // Fake AI reply after delay
-  setTimeout(() => {
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { sender: "ai", text: "This is a dummy AI response." }
-    ]);
-  }, 1000);
-};
+    // Fake AI reply after delay
+    setTimeout(() => {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { sender: "ai", text: "This is a dummy AI response." },
+      ]);
+    }, 1000);
+  };
 
   return (
     <div style={styles.app}>
